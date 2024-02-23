@@ -1,0 +1,9 @@
+PUT http://localhost:8000/api/blogs/65c1111a4cbc549748720baf
+// Update a blog by its id and update the blog status with the new status 
+Content-Type: application/json
+
+{
+    "title": "Updated Title3333111",
+    "content": "Updated Content333311113"
+
+}

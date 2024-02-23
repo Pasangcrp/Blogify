@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap");
+.brand-logo {
+  font-family: "Ubuntu Condensed", sans-serif;
+}
+
+.card {
+  padding: 20px;
+  max-width: 550px;
+  margin: 10px auto;
+}
+.carousel-image {
+  object-fit: cover;
+  height: 50vh;
+}
+.profile-link {
+  text-decoration: none;
+}
