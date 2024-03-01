@@ -16,8 +16,7 @@ const blogSchema = mongoose.Schema(
         postedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
       },
     ],
-    videos: [{ type: String }],
-    images: [{ type: String }],
+    image: [{ type: String }],
     user: {
       ref: "User",
       type: mongoose.Schema.Types.ObjectId,

@@ -83,8 +83,6 @@ userRouter.post("/login", async (req, res) => {
 });
 
 //!LoggedOut
-
-// Logout route
 userRouter.post("/logout", (req, res) => {
   // Perform logout logic on the server side, e.g., clear session data
   req.session.destroy((err) => {
@@ -97,7 +95,6 @@ userRouter.post("/logout", (req, res) => {
 });
 
 //!Getting a userinfo[NOT IMPLEMENTED]
-
 userRouter.get("/userinfo", fetchUser, async (req, res) => {
   try {
     if (!req.user) {

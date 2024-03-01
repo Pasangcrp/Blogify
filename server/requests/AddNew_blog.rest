@@ -1,7 +1,7 @@
-POST http://localhost:8000/api/blogs
+POST http://localhost:8000/api/newblog
 Content-Type: application/json
 
 {
-    "title": "Blog",
-    "content": "hii"
+    "title": "NEW BLOG",
+    "content": "ADDING NEW BLOG"
 }

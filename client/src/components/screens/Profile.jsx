@@ -1,80 +1,3 @@
-/*
-import React, { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-const Profile = () => {
-  const [blogs, setBlogs] = useState([]);
-  const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    if (token) {
-      const decodedToken = decodeToken(token);
-      if (decodedToken && decodedToken.id) {
-        const userId = decodedToken.id;
-        fetchBlogs(userId);
-      }
-    }
-  }, [token]);
-
-  const decodeToken = (token) => {
-    try {
-      const decoded = JSON.parse(atob(token.split(".")[1]));
-      return decoded;
-    } catch (error) {
-      console.error("Error decoding token:", error);
-      return null;
-    }
-  };
-
-  const fetchBlogs = async (userId) => {
-    try {
-      const response = await fetch(`/api/blogs/blogsByAuthor/${userId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch blogs");
-      }
-
-      const data = await response.json();
-      setBlogs(data);
-    } catch (error) {
-      console.error("Error fetching blogs:", error);
-    }
-  };
-
-  return (
-    <>
-      <h1 className="text-center p-4 mt-1">My Blogs</h1>
-      <Row xs={1} md={2} className="g-4">
-        {blogs.map((blog) => (
-          <Col key={blog._id}>
-            <Card>
-              <Card.Img variant="top" src={blog.images[0]} />
-              <Card.Body>
-                <Card.Title>{blog.title}</Card.Title>
-                <Card.Text>{blog.content}</Card.Text>
-                <div className="d-flex justify-content-between">
-                  <button className="btn btn-outline-primary">Likes</button>
-                  <button className="btn btn-outline-primary">Comments</button>
-                  <button className="btn btn-outline-primary">Share</button>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </>
-  );
-};
-
-export default Profile;
-*/
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
@@ -168,7 +91,7 @@ const Profile = () => {
         {blogs.map((blog) => (
           <Col key={blog._id}>
             <Card>
-              <Card.Img variant="top" src={blog.images[0]} />
+              <Card.Img variant="top" src={blog.image[0]} />
               <Card.Body>
                 <Card.Title>{blog.title}</Card.Title>
                 <Card.Text>{blog.content}</Card.Text>
