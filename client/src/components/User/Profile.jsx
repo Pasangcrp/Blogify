@@ -1,4 +1,3 @@
-// Profile.jsx
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -55,6 +54,11 @@ const Profile = () => {
     }
   };
 
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'short', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+  };
+
   const handleEditClick = (blog) => {
     setSelectedBlog(blog);
     setShowEditModal(true);
@@ -78,6 +82,7 @@ const Profile = () => {
               <Card.Body>
                 <Card.Title>{blog.title}</Card.Title>
                 <Card.Text>{blog.content}</Card.Text>
+                <Card.Text>Date: {formatDate(blog.createdAt)}</Card.Text>
                 <hr />
                 <div className="d-flex justify-content-between">
                   <button
