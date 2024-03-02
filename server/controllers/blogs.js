@@ -117,6 +117,7 @@ blogRouter.delete('/:id', async (req, res) => {
 });
 
 //! Like a blog
+
 blogRouter.put('/:id/like', async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
