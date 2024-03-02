@@ -4,7 +4,7 @@ import {
   Carouselimage,
   Carouselimage1,
   Carouselimage2,
-} from '../Carouselimage';
+} from '../Home/Carouselimage';
 
 const Home = () => {
   const [index, setIndex] = useState(0);

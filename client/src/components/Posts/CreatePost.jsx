@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { toast } from 'react-toastify';
@@ -9,6 +10,7 @@ function CreateBlog() {
   const [content, setContent] = useState('');
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState('');
+  const navigate = useNavigate();
 
   const handleFileUpload = async (e) => {
     const selectedFile = e.target.files[0];
@@ -51,6 +53,7 @@ function CreateBlog() {
       if (response.ok) {
         const savedBlog = await response.json();
         toast.success('Blog post created successfully', savedBlog);
+        navigate('/Profile');
 
         setTitle('');
         setContent('');

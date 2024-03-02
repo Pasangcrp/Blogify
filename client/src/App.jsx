@@ -65,33 +65,33 @@ export default App;
 */
 
 // App.jsx
-import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Home from "./components/screens/Home";
-import SignIn from "./components/screens/SignIn";
-import SignUp from "./components/screens/SignUp";
-import Profile from "./components/screens/Profile";
-import UserDashboard from "./components/screens/UserDashboard";
-import { toast } from "react-toastify";
-import CreatPost from "./components/CreatePost";
+import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import NavBar from './components/Navigation/NavBar';
+import Home from './components/Home/Home';
+import SignIn from './components/Register/SignIn';
+import SignUp from './components/Register/SignUp';
+import Profile from './components/User/Profile';
+import UserDashboard from './components/User/UserDashboard';
+import { toast } from 'react-toastify';
+import CreatPost from './components/Posts/CreatePost';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("isLoggedIn") === "true"
+    localStorage.getItem('isLoggedIn') === 'true'
   );
   const [userName, setUserName] = useState(
-    localStorage.getItem("username") || ""
+    localStorage.getItem('username') || ''
   );
 
   useEffect(() => {
-    localStorage.setItem("isLoggedIn", isLoggedIn);
+    localStorage.setItem('isLoggedIn', isLoggedIn);
     if (isLoggedIn) {
       const fetchUserInfo = async () => {
         try {
-          const token = localStorage.getItem("token");
-          const userInfoResponse = await fetch("/api/users/userinfo", {
-            method: "get",
+          const token = localStorage.getItem('token');
+          const userInfoResponse = await fetch('/api/users/userinfo', {
+            method: 'get',
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -99,23 +99,23 @@ function App() {
           const userInfoData = await userInfoResponse.json();
           setUserName(userInfoData.username);
         } catch (error) {
-          console.error("Error fetching user info:", error);
+          console.error('Error fetching user info:', error);
         }
       };
       fetchUserInfo();
     } else {
-      setUserName(""); // Clear username if user logs out
+      setUserName(''); // Clear username if user logs out
     }
   }, [isLoggedIn]);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    toast.success("Logged Out");
+    toast.success('Logged Out');
 
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = '/';
     }, 1000);
-    localStorage.setItem("isLoggedIn", "false");
+    localStorage.setItem('isLoggedIn', 'false');
   };
 
   return (

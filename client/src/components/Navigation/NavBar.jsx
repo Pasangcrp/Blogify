@@ -1,5 +1,5 @@
-import { Navbar, Container, Nav, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const NavBar = ({ isLoggedIn, handleLogout, username }) => {
   return (
@@ -45,7 +45,7 @@ const NavBar = ({ isLoggedIn, handleLogout, username }) => {
                 <Navbar.Collapse>
                   <Navbar.Text>
                     Signed in as:
-                    <Nav.Link as={Link} to={"/Profile"}>
+                    <Nav.Link as={Link} to={'/Profile'}>
                       {username}
                     </Nav.Link>
                   </Navbar.Text>

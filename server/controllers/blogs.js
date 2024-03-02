@@ -59,38 +59,9 @@ blogRouter.get('/blogs/following', async (req, res) => {
 });
 
 //! Add a new blog |Done
-/*
-blogRouter.post('/blogs', async (req, res, next) => {
-  const { title, content, image } = req.body;
-
-  if (!title || !content) {
-    return res.status(400).json({ message: 'Title and content are required' });
-  }
-
-  try {
-    // Get the image URL from Firebase Storage (Assuming it's stored as 'image' in req.body)
-    const imageURL = req.body.image;
-
-    // Save the blog data including the image URL to MongoDB
-    const blog = new Blog({
-      title: title,
-      content: content,
-      author: req.user._id,
-      image: imageURL, // Store the image URL in MongoDB
-    });
-
-    const savedBlog = await blog.save();
-    res.status(201).json(savedBlog);
-  } catch (error) {
-    console.log('ERROR');
-    next(error);
-  }
-});
-*/
 blogRouter.post('/newblog', async (req, res) => {
   try {
     const { title, content, image } = req.body;
-    
 
     if (!title || !content) {
       return res

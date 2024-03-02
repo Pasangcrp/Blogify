@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { toast } from 'react-toastify';
 import Carousel from 'react-bootstrap/Carousel';
-import { Carouselimage } from '../Carouselimage';
+import { Carouselimage } from '../Home/Carouselimage';
 import { Link } from 'react-router-dom';
 
 const UserDashboard = () => {
