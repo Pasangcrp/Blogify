@@ -23,7 +23,7 @@ const EditPost = ({ selectedBlog, setSelectedBlog, setBlogs }) => {
         body: JSON.stringify({
           title: updatedTitle,
           content: updatedContent,
-          image: selectedBlog.image, // Assuming you don't want to update the image
+          image: selectedBlog.image,
         }),
       });
 

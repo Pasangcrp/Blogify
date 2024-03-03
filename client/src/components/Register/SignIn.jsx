@@ -29,22 +29,19 @@ const SignIn = ({ setIsLoggedIn, setUserName }) => {
         return;
       }
 
-      const { token } = await response.json(); // Extract token from response
+      const { token } = await response.json();
 
-      // Store token in local storage
       localStorage.setItem('token', token);
 
-      // Fetch user information after successful login
       const userInfoResponse = await fetch('/api/users/userinfo', {
         method: 'get',
         headers: {
-          Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          Authorization: `Bearer ${token}`,
         },
       });
       const userInfoData = await userInfoResponse.json();
-      console.log('User Info:', userInfoData); // Add console log here to check user info
+      console.log('User Info:', userInfoData);
 
-      // Update the username state
       setUserName(userInfoData.username);
       console.log(userInfoData.username);
 
@@ -54,55 +51,11 @@ const SignIn = ({ setIsLoggedIn, setUserName }) => {
       toast.success('LogIn successful!');
       setIsLoggedIn(true);
 
-      // setTimeout(() => {
-      //   window.location.href = "/UserDashboard";
-      // }, 1000);
       navigate('/UserDashboard');
     } catch (error) {
       toast.error(error.message || 'An error occurred');
     }
   };
-
-  /*
-  const postData = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await fetch(`/api/users/login`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-
-      if (!response.ok) {
-        const data = await response.json();
-        toast.error("Enter correct email or password");
-        return;
-      }
-
-      const { token } = await response.json();
-
-      localStorage.setItem("token", token);
-
-      setEmail("");
-      setPassword("");
-
-      toast.success("LogIn successful!");
-      setIsLoggedIn(true);
-
-      setTimeout(() => {
-        window.location.href = "/UserDashboard";
-      }, 1000);
-    } catch (error) {
-      toast.error(error.message || "An error occurred");
-    }
-  };
-*/
   return (
     <>
       <div className="auth-card">

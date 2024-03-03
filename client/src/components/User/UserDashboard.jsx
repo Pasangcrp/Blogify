@@ -1,4 +1,3 @@
-// UserDashboard.jsx
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -10,6 +9,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Carouselimage } from '../Home/Carouselimage';
 import { Link } from 'react-router-dom';
 import LikePost from '../Posts/LikePost';
+import CommentPost from '../Posts/CommentPost';
 
 const UserDashboard = () => {
   const [blogs, setBlogs] = useState([]);
@@ -31,6 +31,7 @@ const UserDashboard = () => {
       }
       const blogsData = await response.json();
       setBlogs(blogsData);
+      console.log(blogsData);
     } catch (error) {
       toast.error('Error fetching blogs:', error);
     }
@@ -80,7 +81,7 @@ const UserDashboard = () => {
                   )}
                   <hr />
                   <LikePost blogId={blog._id} />
-                  <Button variant="outline-primary">Comments</Button>
+                  <CommentPost blogId={blog._id} />
                   <Button variant="outline-primary">Read More</Button>
                 </Card.Body>
               </Card>

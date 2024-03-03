@@ -117,7 +117,7 @@ blogRouter.delete('/:id', async (req, res) => {
 });
 
 //! Like a blog
-
+/*
 blogRouter.put('/:id/like', async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
@@ -132,16 +132,73 @@ blogRouter.put('/:id/like', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+*/
+blogRouter.put('/:id/like', async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    const userId = req.user._id;
+
+    // Check if the user has already liked the blog
+    const isLiked = blog.likes.includes(userId);
+
+    if (isLiked) {
+      // If already liked, remove the like
+      blog.likes = blog.likes.filter(
+        (id) => id.toString() !== userId.toString()
+      );
+    } else {
+      // If not liked, add the like
+      blog.likes.push(userId);
+    }
+
+    await blog.save();
+    res.json(blog);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 //! Comment on a blog
+/*
 blogRouter.post('/:id/comment', async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
     if (!blog) {
       return res.status(404).json({ message: 'Blog not found' });
     }
+
     const { text } = req.body;
-    blog.comments.push({ text, postedBy: req.user._id }); // Assuming req.user contains user's ID
+    if (!text) {
+      return res.status(400).json({ message: 'Text is required for comment' });
+    }
+
+    blog.comments.push({ text, postedBy: req.user._id });
+    await blog.save();
+    res.json(blog);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+*/
+blogRouter.post('/:id/comment', async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    const { text } = req.body;
+    if (!text) {
+      return res.status(400).json({ message: 'Text is required for comment' });
+    }
+
+    blog.comments.push({ text, postedBy: req.user._id });
     await blog.save();
     res.json(blog);
   } catch (err) {

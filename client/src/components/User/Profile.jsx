@@ -3,13 +3,13 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import EditPost from '../Posts/EditPost';
-import DeletePost from '../Posts/DeletePost'; // Import DeletePost component
+import DeletePost from '../Posts/DeletePost';
 
 const Profile = () => {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // Add state for delete modal
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -68,7 +68,7 @@ const Profile = () => {
   const handleDeleteClick = (blog) => {
     setSelectedBlog(blog);
     setShowDeleteModal(true);
-    setShowEditModal(false); // Close edit modal when delete modal is opened
+    setShowEditModal(false);
   };
 
   return (

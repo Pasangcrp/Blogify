@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const NavBar = ({ isLoggedIn, handleLogout, username }) => {
@@ -8,18 +8,9 @@ const NavBar = ({ isLoggedIn, handleLogout, username }) => {
         <Navbar.Brand className="brand-logo" as={Link} to="/">
           BLOGIFY
         </Navbar.Brand>
-        <Form className="d-flex">
-          <Form.Control
-            type="search"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
-          />
-          <Button variant="outline-success">Search</Button>
-        </Form>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Nav className="me-auto">
+          <Nav className="me-auto justify-content-center">
             {isLoggedIn ? (
               <Nav.Link as={Link} to="/UserDashboard">
                 UserDashboard
@@ -29,7 +20,7 @@ const NavBar = ({ isLoggedIn, handleLogout, username }) => {
                 Home
               </Nav.Link>
             )}
-            <Nav.Link href="#link">About Us</Nav.Link>
+            <Nav.Link href="/AboutUs">About Us</Nav.Link>
             {!isLoggedIn && (
               <>
                 <Nav.Link as={Link} to="/signIn">
@@ -42,15 +33,9 @@ const NavBar = ({ isLoggedIn, handleLogout, username }) => {
             )}
             {isLoggedIn && (
               <>
-                <Navbar.Collapse>
-                  <Navbar.Text>
-                    Signed in as:
-                    <Nav.Link as={Link} to={'/Profile'}>
-                      {username}
-                    </Nav.Link>
-                  </Navbar.Text>
-                </Navbar.Collapse>
-
+                <Nav.Link as={Link} to={'/Profile'}>
+                  {isLoggedIn ? `Signed in as: ${username}` : null}
+                </Nav.Link>
                 <Nav.Link onClick={handleLogout}>LogOut</Nav.Link>
               </>
             )}
